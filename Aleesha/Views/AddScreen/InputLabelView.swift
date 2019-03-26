@@ -21,14 +21,12 @@ class InputLabelView: BaseView {
 
     override func setupViews() {
         backgroundColor = .white
-        setupTitleLabel()
-    }
-    
-    private func setupTitleLabel() {
-        addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        let contentView = [titleLabel]
+        contentView.forEach(addSubview)
+        
+        titleLabel.anchorWithCenter(top: nil, left: leftAnchor, bottom: nil, right: nil, padding: UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 0), vertical: centerYAnchor, horizontal: nil)
+        
     }
     
     func setTextLabel(with text: String) {

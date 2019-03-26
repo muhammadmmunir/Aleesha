@@ -29,7 +29,12 @@ class CustomAccessoryView: BaseView {
     override func setupViews() {
         backgroundColor = .white
         setupAccessoryButtonShadow()
-        setupAccessoryButton()
+        
+        let contentView = [accessoryButton]
+        contentView.forEach(addSubview)
+        
+        accessoryButton.anchorWithCenterAndSizeMultiplier(top: nil, left: nil, bottom: nil, right: nil, vertical: centerYAnchor, horizontal: centerXAnchor, width: widthAnchor, height: heightAnchor, multiplier: CGSize(width: 1, height: 1))
+        
     }
     
     @objc private func dismissView() {
@@ -42,15 +47,6 @@ class CustomAccessoryView: BaseView {
         layer.shadowOffset = CGSize(width: 0, height: 2.0)
         layer.shadowRadius = 20.0
         layer.shadowOpacity = 0.15
-    }
-    
-    private func setupAccessoryButton() {
-        addSubview(accessoryButton)
-        accessoryButton.translatesAutoresizingMaskIntoConstraints = false
-        accessoryButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        accessoryButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        accessoryButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1).isActive = true
-        accessoryButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
     }
     
 }

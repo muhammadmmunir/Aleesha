@@ -68,7 +68,7 @@ class AddRootContainer: BaseView {
         categoryLabelView.anchor(top: inputTitleView.bottomAnchor, left: margins.leftAnchor, bottom: nil, right: margins.rightAnchor, size: CGSize(width: 0, height: 50))
         inputCategoryView.anchor(top: categoryLabelView.bottomAnchor, left: margins.leftAnchor, bottom: nil, right: margins.rightAnchor, size: CGSize(width: 0, height: 60))
         dateLabelView.anchor(top: inputCategoryView.bottomAnchor, left: margins.leftAnchor, bottom: nil, right: margins.rightAnchor, size: CGSize(width: 0, height: 50))
-        dateLabelView.anchor(top: inputCategoryView.bottomAnchor, left: margins.leftAnchor, bottom: nil, right: margins.rightAnchor, size: CGSize(width: 0, height: 50))
+        inputDateView.anchor(top: dateLabelView.bottomAnchor, left: margins.leftAnchor, bottom: nil, right: margins.rightAnchor, size: CGSize(width: 0, height: 60))
     }
     
     // MARK: - Remove all input in add view

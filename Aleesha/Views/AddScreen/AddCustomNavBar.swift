@@ -31,27 +31,13 @@ class AddCustomNavBar: BaseView {
 
     override func setupViews() {
         backgroundColor = .white
-        setupCloseButton()
-        setupSaveButton()
-    }
-    
-    private func setupCloseButton() {
-        addSubview(closeButton)
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
-        closeButton.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 35).isActive = true
-        closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        closeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-    }
-    
-    private func setupSaveButton() {
-        addSubview(saveButton)
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
-        saveButton.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: -35).isActive = true
-        saveButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        saveButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        let contentView = [closeButton, saveButton]
+        contentView.forEach(addSubview)
+        
+        closeButton.anchor(top: margins.topAnchor, left: margins.leftAnchor, bottom: nil, right: nil, padding: UIEdgeInsets(top: 10, left: 35, bottom: 0, right: 0), size: CGSize(width: 30, height: 30))
+        saveButton.anchor(top: margins.topAnchor, left: nil, bottom: nil, right: margins.rightAnchor, padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 35), size: CGSize(width: 30, height: 30))
+        
     }
     
     @objc private func closeAddView() {
