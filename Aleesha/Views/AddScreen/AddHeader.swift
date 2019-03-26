@@ -21,14 +21,11 @@ class AddHeader: BaseView {
     
     override func setupViews() {
         backgroundColor = .white
-        setupTitleLabel()
+        
+        let contentView = [titleLabel]
+        contentView.forEach(addSubview)
+        
+        titleLabel.anchorWithCenter(top: nil, left: leftAnchor, bottom: nil, right: nil, padding: UIEdgeInsets(top: 0, left: 35, bottom: 0, right: 0), vertical: centerYAnchor, horizontal: nil)
     }
     
-    private func setupTitleLabel() {
-        addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 35).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-    }
-
 }
