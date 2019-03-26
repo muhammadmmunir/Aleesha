@@ -10,10 +10,6 @@ import UIKit
 
 class InputCategoryView: BaseView {
     
-    private var screenWidth: CGFloat {
-        return UIScreen.main.bounds.size.width
-    }
-    
     weak var alertDelegate: AddViewControllerDelegate?
     
     var categories = [TodoCategory]()

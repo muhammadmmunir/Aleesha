@@ -21,14 +21,6 @@ class TodoListRootContainer: BaseView {
         }
     }
     
-    private var screenWidth: CGFloat {
-        return UIScreen.main.bounds.size.width
-    }
-    
-//    private var margins: UILayoutGuide {
-//        return safeAreaLayoutGuide
-//    }
-    
     private let todoListHeader: TodoListHeader = {
         let header = TodoListHeader()
         header.titleLabel.text = "Other"

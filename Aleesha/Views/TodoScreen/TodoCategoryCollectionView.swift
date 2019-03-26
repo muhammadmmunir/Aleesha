@@ -14,10 +14,6 @@ class TodoCategoryCollectionView: BaseView {
     
     weak var delegate: TodoViewDelegate?
     
-    private var screenWidth: CGFloat {
-        return UIScreen.main.bounds.size.width
-    }
-    
     private var sreenHeight: CGFloat {
         return UIScreen.main.bounds.size.height
     }

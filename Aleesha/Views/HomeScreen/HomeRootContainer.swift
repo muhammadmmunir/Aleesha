@@ -9,18 +9,6 @@
 import UIKit
 
 class HomeRootContainer: BaseView {
-
-//    private var margins: UILayoutGuide {
-//        return safeAreaLayoutGuide
-//    }
-    
-    private var screenSize: CGRect {
-        return UIScreen.main.bounds
-    }
-    
-    private var screenHeight: CGFloat {
-        return screenSize.height
-    }
     
     var quoteText: String? {
         didSet{

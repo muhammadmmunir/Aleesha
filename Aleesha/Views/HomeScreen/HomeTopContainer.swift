@@ -22,10 +22,6 @@ class HomeTopContainer: BaseView {
         return getTodayDateWithFormat("yyyy")
     }
     
-//    private var margins: UILayoutGuide {
-//        return safeAreaLayoutGuide
-//    }
-    
     var quoteText: String? {
         didSet{
             if let quoteText = quoteText {

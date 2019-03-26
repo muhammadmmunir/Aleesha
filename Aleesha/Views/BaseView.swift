@@ -17,6 +17,14 @@ class BaseView: UIView, BaseViewInterface {
     var margins: UILayoutGuide {
         return safeAreaLayoutGuide
     }
+    
+    var screenWidth: CGFloat {
+        return UIScreen.main.bounds.size.width
+    }
+    
+    var screenHeight: CGFloat {
+        return UIScreen.main.bounds.size.height
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

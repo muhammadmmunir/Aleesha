@@ -9,10 +9,6 @@
 import UIKit
 
 class FinanceRootContainer: BaseView {
-
-//    private var margins: UILayoutGuide {
-//        return safeAreaLayoutGuide
-//    }
     
     private let financeHeader: HeaderBar = {
         let header = HeaderBar()

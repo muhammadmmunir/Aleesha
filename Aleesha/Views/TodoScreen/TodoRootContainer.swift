@@ -10,14 +10,6 @@ import UIKit
 
 class TodoRootContainer: BaseView {
     
-    private var screenWidth: CGFloat {
-        return UIScreen.main.bounds.size.width
-    }
-    
-//    private var margins: UILayoutGuide {
-//        return safeAreaLayoutGuide
-//    }
-    
     private var panGesture: UIPanGestureRecognizer = {
         let gesture = UIPanGestureRecognizer()
         return gesture

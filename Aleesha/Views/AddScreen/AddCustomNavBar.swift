@@ -10,10 +10,6 @@ import UIKit
 
 class AddCustomNavBar: BaseView {
     
-//    private var margins: UILayoutGuide {
-//        return safeAreaLayoutGuide
-//    }
-    
     weak var buttonDelegate: AddViewControllerDelegate?
     
     let closeButton: UIButton = {

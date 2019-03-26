@@ -14,10 +14,6 @@ class HomeSection: BaseView {
     
     var collectionViewCellColor: UIColor?
     
-    private var screenWidth: CGFloat {
-        return frame.width
-    }
-    
     let homeSectionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "AvenirNext-Medium", size: 20)

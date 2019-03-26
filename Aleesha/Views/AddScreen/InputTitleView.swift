@@ -10,10 +10,6 @@ import UIKit
 
 class InputTitleView: BaseView {
     
-    private var screenWidth: CGFloat {
-        return UIScreen.main.bounds.size.width
-    }
-    
     weak var alertDelegate: AddViewControllerDelegate?
 
     lazy var inputTitle: UITextField = {

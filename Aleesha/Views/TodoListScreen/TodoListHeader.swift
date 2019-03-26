@@ -9,10 +9,6 @@
 import UIKit
 
 class TodoListHeader: BaseView {
-    
-//    private var margins: UILayoutGuide {
-//        return safeAreaLayoutGuide
-//    }
 
     let titleLabel: UILabel = {
         let label = UILabel()

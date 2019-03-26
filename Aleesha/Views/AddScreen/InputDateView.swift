@@ -10,10 +10,6 @@ import UIKit
 
 class InputDateView: BaseView {
     
-    private var screenWidth: CGFloat {
-        return UIScreen.main.bounds.size.width
-    }
-    
     weak var alertDelegate: AddViewControllerDelegate?
     
     lazy var dateTextField: UITextField = {
