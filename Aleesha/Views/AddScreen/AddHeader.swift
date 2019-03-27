@@ -10,6 +10,7 @@ import UIKit
 
 class AddHeader: BaseView {
     
+    // MARK: - ContentView
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.init(name: "AvenirNext-Medium", size: 24)
@@ -19,6 +20,7 @@ class AddHeader: BaseView {
         return label
     }()
     
+    // MARK: - View customization
     override func setupViews() {
         backgroundColor = .white
         

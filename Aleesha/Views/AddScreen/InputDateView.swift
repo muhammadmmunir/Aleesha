@@ -10,8 +10,10 @@ import UIKit
 
 class InputDateView: BaseView {
     
+    // MARK: - Instance variables
     weak var alertDelegate: AddViewControllerDelegate?
     
+    // MARK: - ContentView
     lazy var dateTextField: UITextField = {
         let textField = UITextField()
         
@@ -41,40 +43,27 @@ class InputDateView: BaseView {
         return accessory
     }()
     
+    // MARK: - View customization
     override func setupViews() {
         backgroundColor = .white
-        setupDateTextField()
-        setupBottomBorder()
-        setupDateAccessoryView()
-    }
-    
-    private func setupDateTextField() {
-        addSubview(dateTextField)
-        dateTextField.translatesAutoresizingMaskIntoConstraints = false
-        dateTextField.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        dateTextField.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
-        dateTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        dateTextField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8).isActive = true
-    }
-    
-    private func setupBottomBorder() {
-        addSubview(bottomBorder)
-        bottomBorder.translatesAutoresizingMaskIntoConstraints = false
-        bottomBorder.topAnchor.constraint(equalTo: dateTextField.bottomAnchor).isActive = true
-        bottomBorder.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
-        bottomBorder.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        bottomBorder.heightAnchor.constraint(equalToConstant: 2).isActive = true
-    }
-    
-    private func setupDateAccessoryView() {
+        
+        let contentView = [dateTextField, bottomBorder]
+        contentView.forEach(addSubview)
+        
+        dateTextField.anchorWithSizeMultiplier(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, padding: UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 20), width: nil, height: heightAnchor, multiplier: CGSize(width: 0, height: 0.8))
+        bottomBorder.anchor(top: dateTextField.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, padding: UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 20), size: CGSize(width: 0, height: 2))
+        
+        // setup accessoryView for dateTextField
         dateAccessoryView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 50)
         dateTextField.inputAccessoryView = dateAccessoryView
     }
     
+    // MARK: - Handle action for dateTextField
     @objc private func dateChanged(_ sender: UIDatePicker) {
         useDate(from: sender.date)
     }
     
+    // MARK: - Helper method for handling dateTextField
     private func useDate(from date: Date) {
         let date = Calendar.current.dateComponents([.year, .month, .day], from: date)
         if let day = date.day, let month = date.month, let year = date.year {
@@ -92,7 +81,7 @@ extension InputDateView: UITextFieldDelegate {
         return true
     }
     
-    // disable edit text in textfield
+    // disable edit text in dateTextField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return false
     }
@@ -110,8 +99,7 @@ extension InputDateView: CustomAccessoryViewDelegate {
             alertDelegate?.alertInput(with: "You must filled the date input.")
         } else {
             dateTextField.resignFirstResponder()
-        }
-        
+        }  
     }
     
 }

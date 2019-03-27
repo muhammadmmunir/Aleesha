@@ -10,6 +10,7 @@ import UIKit
 
 class HomeRootContainer: BaseView {
     
+    // MARK: - Instance variables
     var quoteText: String? {
         didSet{
             if let quoteText = quoteText {
@@ -17,7 +18,10 @@ class HomeRootContainer: BaseView {
             }
         }
     }
+    var todos = [HomeSectionItem]()
+    var finance = [HomeSectionItem]()
     
+    // MARK: - ContentView
     private let topContainer: HomeTopContainer = {
         let view = HomeTopContainer()
         return view
@@ -33,9 +37,32 @@ class HomeRootContainer: BaseView {
         return financeSection
     }()
     
-    var todos = [HomeSectionItem]()
-    var finance = [HomeSectionItem]()
-
+    // MARK: - View customization
+    override func setupViews() {
+        populateTodoSectionItem()
+        populateFinanceSectionHistory()
+        backgroundColor = .white
+        
+        let contentView = [topContainer, todoSection, financeSection]
+        contentView.forEach(addSubview)
+        
+        topContainer.anchorWithSizeMultiplier(top: topAnchor, left: margins.leftAnchor, bottom: nil, right: margins.rightAnchor, width: nil, height: margins.heightAnchor, multiplier: CGSize(width: 0, height: 0.55))
+        
+        let paddingTop = screenHeight * 0.025
+        todoSection.sectionItem = self.todos
+        todoSection.homeSectionLabel.text = "Great task to do"
+        todoSection.collectionViewCellColor = UIColor(rgb: 0x00E4B8)
+        
+        todoSection.anchorWithSizeMultiplier(top: topContainer.bottomAnchor, left: margins.leftAnchor, bottom: nil, right: margins.rightAnchor, padding: UIEdgeInsets(top: paddingTop, left: 0, bottom: 0, right: 0), width: nil, height: margins.heightAnchor, multiplier: CGSize(width: 0, height: 0.21))
+        
+        
+        financeSection.sectionItem = self.finance
+        financeSection.homeSectionLabel.text = "Latest finance history"
+        financeSection.collectionViewCellColor = UIColor(rgb: 0x36D5FF)
+        
+        financeSection.anchorWithSizeMultiplier(top: todoSection.bottomAnchor, left: margins.leftAnchor, bottom: nil, right: margins.rightAnchor, width: nil, height: margins.heightAnchor, multiplier: CGSize(width: 0, height: 0.21))
+    }
+    
     private func populateTodoSectionItem() {
         todos.append(HomeSectionItem(name: "Study Literature", category: "School"))
         todos.append(HomeSectionItem(name: "Do the exercises of math", category: "Home"))
@@ -51,55 +78,6 @@ class HomeRootContainer: BaseView {
         finance.append(HomeSectionItem(name: "Jeans", category: "Shopping"))
         finance.append(HomeSectionItem(name: "Lunch", category: "Food"))
         finance.append(HomeSectionItem(name: "Dinner", category: "Food"))
-    }
-    
-    override func setupViews() {
-        populateTodoSectionItem()
-        populateFinanceSectionHistory()
-        backgroundColor = .white
-        
-        setupTopContainer()
-        setupTodoSection()
-        setupFinanceSection()
-    }
-    
-    private func setupTopContainer() {
-        addSubview(topContainer)
-        topContainer.translatesAutoresizingMaskIntoConstraints = false
-        topContainer.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        topContainer.heightAnchor.constraint(equalTo: margins.heightAnchor, multiplier: 0.55).isActive = true
-        topContainer.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
-        topContainer.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
-    }
-    
-    private func setupTodoSection() {
-        addSubview(todoSection)
-        
-        let paddingTop = screenHeight * 0.025
-        todoSection.sectionItem = self.todos
-        todoSection.homeSectionLabel.text = "Great task to do"
-        todoSection.collectionViewCellColor = UIColor(rgb: 0x00E4B8)
-        
-        todoSection.translatesAutoresizingMaskIntoConstraints = false
-        todoSection.topAnchor.constraint(equalTo: topContainer.bottomAnchor, constant: paddingTop).isActive = true
-        todoSection.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
-        todoSection.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
-        todoSection.heightAnchor.constraint(equalTo: margins.heightAnchor, multiplier: 0.21).isActive = true
-    }
-    
-    private func setupFinanceSection() {
-        addSubview(financeSection)
-        
-        let paddingTop = screenHeight * 0.025
-        financeSection.sectionItem = self.finance
-        financeSection.homeSectionLabel.text = "Latest finance history"
-        financeSection.collectionViewCellColor = UIColor(rgb: 0x36D5FF)
-        
-        financeSection.translatesAutoresizingMaskIntoConstraints = false
-        financeSection.topAnchor.constraint(equalTo: todoSection.bottomAnchor, constant: paddingTop).isActive = true
-        financeSection.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
-        financeSection.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
-        financeSection.heightAnchor.constraint(equalTo: margins.heightAnchor, multiplier: 0.21).isActive = true
     }
 
 }

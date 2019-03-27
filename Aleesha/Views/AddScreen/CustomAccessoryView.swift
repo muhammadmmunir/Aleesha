@@ -8,14 +8,17 @@
 
 import UIKit
 
+// MARK: - Accessory Protocol
 protocol CustomAccessoryViewDelegate: class {
     func didButtonAccessoryTapped()
 }
 
 class CustomAccessoryView: BaseView {
     
+    // MARK: - Instance variables
     weak var delegate: CustomAccessoryViewDelegate?
 
+    // MARK: - ContentView
     private lazy var accessoryButton: UIButton = {
         let button = UIButton(type: .custom)
         button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
@@ -26,6 +29,7 @@ class CustomAccessoryView: BaseView {
         return button
     }()
     
+    // MARK: - View customization
     override func setupViews() {
         backgroundColor = .white
         setupAccessoryButtonShadow()
@@ -34,13 +38,8 @@ class CustomAccessoryView: BaseView {
         contentView.forEach(addSubview)
         
         accessoryButton.anchorWithCenterAndSizeMultiplier(top: nil, left: nil, bottom: nil, right: nil, vertical: centerYAnchor, horizontal: centerXAnchor, width: widthAnchor, height: heightAnchor, multiplier: CGSize(width: 1, height: 1))
-        
     }
-    
-    @objc private func dismissView() {
-        delegate?.didButtonAccessoryTapped()
-    }
-    
+
     private func setupAccessoryButtonShadow() {
         // Setup for shadow effect on addButton
         layer.shadowColor = UIColor.lightGray.cgColor
@@ -49,4 +48,8 @@ class CustomAccessoryView: BaseView {
         layer.shadowOpacity = 0.15
     }
     
+    // MARK: - Accessory Delegation method
+    @objc private func dismissView() {
+        delegate?.didButtonAccessoryTapped()
+    }
 }

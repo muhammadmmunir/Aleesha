@@ -10,6 +10,7 @@ import UIKit
 
 class TodoListTableView: BaseView {
     
+    // MARK: - Instance variables
     private var sections = [TodoSectionItem]()
     var todoItems: [TodoItem]? {
         didSet{
@@ -48,6 +49,7 @@ class TodoListTableView: BaseView {
         }
     }
     
+    // MARK: - ContentView
     private lazy var todoListTableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -55,26 +57,24 @@ class TodoListTableView: BaseView {
         return tableView
     }()
     
+    // MARK: - View customization
     override func setupViews() {
         registerCustomViews()
-        setupTodoListTableView()
+        
+        let contentView = [todoListTableView]
+        contentView.forEach(addSubview)
+        
+        todoListTableView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
+        
+        // customization on table view
+        todoListTableView.separatorStyle = .singleLine
+        // hide separatorStyle on blank tableView
+        todoListTableView.tableFooterView = UIView.init()
     }
     
     private func registerCustomViews() {
         todoListTableView.register(TodoListTableViewHeader.self, forHeaderFooterViewReuseIdentifier: TodoListTableViewHeader.reuseIdentifier)
         todoListTableView.register(TodoListTableViewCell.self, forCellReuseIdentifier: TodoListTableViewCell.reuseIdentifier)
-        
-        todoListTableView.separatorStyle = .singleLine
-        todoListTableView.tableFooterView = UIView.init()
-    }
-    
-    private func setupTodoListTableView() {
-        addSubview(todoListTableView)
-        todoListTableView.translatesAutoresizingMaskIntoConstraints = false
-        todoListTableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        todoListTableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        todoListTableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        todoListTableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
     }
 
 }

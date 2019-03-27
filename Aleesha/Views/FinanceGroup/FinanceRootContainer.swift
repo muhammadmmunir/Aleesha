@@ -10,24 +10,21 @@ import UIKit
 
 class FinanceRootContainer: BaseView {
     
+    // MARK: - ContentView
     private let financeHeader: HeaderBar = {
         let header = HeaderBar()
         header.titleText = "Hai Aleesha,\nthis is your finance history."
         return header
     }()
     
+    // MARK: - View customization
     override func setupViews() {
         backgroundColor = .white
-        setupFinanceHeader()
-    }
-    
-    private func setupFinanceHeader() {
-        addSubview(financeHeader)
-        financeHeader.translatesAutoresizingMaskIntoConstraints = false
-        financeHeader.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        financeHeader.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
-        financeHeader.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
-        financeHeader.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2).isActive = true
+        
+        let contentView = [financeHeader]
+        contentView.forEach(addSubview)
+        
+        financeHeader.anchorWithSizeMultiplier(top: topAnchor, left: margins.leftAnchor, bottom: nil, right: margins.rightAnchor, width: nil, height: heightAnchor, multiplier: CGSize(width: 0, height: 0.2))
     }
 
 }

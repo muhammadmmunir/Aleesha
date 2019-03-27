@@ -10,10 +10,11 @@ import UIKit
 
 class InputCategoryView: BaseView {
     
+    // MARK: - Instance variables
     weak var alertDelegate: AddViewControllerDelegate?
-    
     var categories = [TodoCategory]()
 
+    // MARK: - ContentView
     lazy var categoryTextField: UITextField = {
         let textField = UITextField()
         
@@ -42,40 +43,25 @@ class InputCategoryView: BaseView {
         return accessory
     }()
     
+    // MARK: - View customization
     override func setupViews() {
         backgroundColor = .white
-        setupCategoryTextField()
-        setupBottomBorder()
-        setupCategoryAccessoryView()
-    }
-    
-    private func setupCategoryTextField() {
-        addSubview(categoryTextField)
-        categoryTextField.translatesAutoresizingMaskIntoConstraints = false
-        categoryTextField.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        categoryTextField.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
-        categoryTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        categoryTextField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8).isActive = true
-    }
-    
-    private func setupBottomBorder() {
-        addSubview(bottomBorder)
-        bottomBorder.translatesAutoresizingMaskIntoConstraints = false
-        bottomBorder.topAnchor.constraint(equalTo: categoryTextField.bottomAnchor).isActive = true
-        bottomBorder.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
-        bottomBorder.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        bottomBorder.heightAnchor.constraint(equalToConstant: 2).isActive = true
-    }
-    
-    private func setupCategoryAccessoryView() {
+        
+        let contentView = [categoryTextField, bottomBorder]
+        contentView.forEach(addSubview)
+        
+        categoryTextField.anchorWithSizeMultiplier(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, padding: UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 20), width: nil, height: heightAnchor, multiplier: CGSize(width: 0, height: 0.8))
+        bottomBorder.anchor(top: categoryTextField.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, padding: UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 20), size: CGSize(width: 0, height: 2))
+        
+        // setup accessoryView for categoryTextField
         categoryAccessoryView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 50)
         categoryTextField.inputAccessoryView = categoryAccessoryView
     }
-
 }
 
 // MARK: - UIPickerView delegate and data source
 extension InputCategoryView: UIPickerViewDelegate, UIPickerViewDataSource {
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -94,6 +80,7 @@ extension InputCategoryView: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
+        // creating custom label for category PickerView
         var label = UILabel()
         
         if let view = view as? UILabel {
@@ -122,7 +109,6 @@ extension InputCategoryView: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return false
     }
-    
 }
 
 // MARK: - CustomAccessoryView delegate
@@ -137,7 +123,5 @@ extension InputCategoryView: CustomAccessoryViewDelegate {
         } else {
             categoryTextField.resignFirstResponder()
         }
-        
     }
-    
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class AddRootContainer: BaseView {
     
+    // MARK: - ContentView
     lazy var navBar: AddCustomNavBar = {
         let navbar = AddCustomNavBar()
         return navbar
@@ -53,6 +54,7 @@ class AddRootContainer: BaseView {
         return date
     }()
     
+    // MARK: - View customization
     override func setupViews() {
         backgroundColor = .white
         
@@ -71,7 +73,7 @@ class AddRootContainer: BaseView {
         inputDateView.anchor(top: dateLabelView.bottomAnchor, left: margins.leftAnchor, bottom: nil, right: margins.rightAnchor, size: CGSize(width: 0, height: 60))
     }
     
-    // MARK: - Remove all input in add view
+    // MARK: - Function for view behavior
     func removeAllInput() {
         inputTitleView.inputTitle.text = ""
         inputCategoryView.categoryTextField.text = ""

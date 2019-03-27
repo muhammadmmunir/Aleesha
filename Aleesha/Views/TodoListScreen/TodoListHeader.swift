@@ -10,6 +10,7 @@ import UIKit
 
 class TodoListHeader: BaseView {
 
+    // MARK: - ContentView
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.init(name: "AvenirNext-Medium", size: 24)
@@ -35,41 +36,20 @@ class TodoListHeader: BaseView {
         return label
     }()
     
-    
+    // MARK: - View customization
     override func setupViews() {
         backgroundColor = .white
-        setupTitleIcon()
-        setupTitleLabel()
-        setupTaskNumberLabel()
-    }
-    
-    private func setupTitleIcon() {
+        
+        let contentView = [titleIcon, titleLabel, taskNumberLabel]
+        contentView.forEach(addSubview)
+        
         let imageWidth = CGFloat(25)
         let imageHeight = imageWidth
         let paddingVertical = CGFloat(50 - imageWidth) / 2
         
-        addSubview(titleIcon)
-        titleIcon.translatesAutoresizingMaskIntoConstraints = false
-        titleIcon.topAnchor.constraint(equalTo: margins.topAnchor, constant: paddingVertical).isActive = true
-        titleIcon.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 35).isActive = true
-        titleIcon.widthAnchor.constraint(equalToConstant: imageWidth).isActive = true
-        titleIcon.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
-    }
-    
-    private func setupTitleLabel() {
-        let paddingVertical = CGFloat(50 - 25) / 2
-        
-        addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: paddingVertical).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: titleIcon.rightAnchor, constant: 15).isActive = true
-    }
-    
-    private func setupTaskNumberLabel() {
-        addSubview(taskNumberLabel)
-        taskNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-        taskNumberLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15).isActive = true
-        taskNumberLabel.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 75).isActive = true
+        titleIcon.anchor(top: margins.topAnchor, left: margins.leftAnchor, bottom: nil, right: nil, padding: UIEdgeInsets(top: paddingVertical, left: 35, bottom: 0, right: 0), size: CGSize(width: imageWidth, height: imageHeight))
+        titleLabel.anchor(top: margins.topAnchor, left: titleIcon.rightAnchor, bottom: nil, right: nil, padding: UIEdgeInsets(top: paddingVertical, left: 15, bottom: 0, right: 0))
+        taskNumberLabel.anchor(top: titleLabel.bottomAnchor, left: margins.leftAnchor, bottom: nil, right: nil, padding: UIEdgeInsets(top: 15, left: 75, bottom: 0, right: 0))
     }
 
 }

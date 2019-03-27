@@ -10,12 +10,14 @@ import UIKit
 
 class HeaderBar: BaseView {
 
+    // MARK: - Instance variables
     var titleText: String? {
         didSet{
             headerTitle.text = titleText
         }
     }
     
+    // MARK: - ContentView
     private let headerTitle: UILabel = {
         let title = UILabel()
         title.font = UIFont.init(name: "AvenirNext-DemiBold", size: 22)
@@ -25,18 +27,14 @@ class HeaderBar: BaseView {
         return title
     }()
     
+    // MARK: - View customization
     override func setupViews() {
         backgroundColor = UIColor(rgb: 0x00D1C4)
         layer.cornerRadius = 30
         layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        setupTitle()
-    }
-    
-    private func setupTitle() {
+        
         addSubview(headerTitle)
-        headerTitle.translatesAutoresizingMaskIntoConstraints = false
-        headerTitle.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20).isActive = true
-        headerTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30).isActive = true
+        headerTitle.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: nil, padding: UIEdgeInsets(top: 0, left: 30, bottom: 20, right: 0))
     }
 
 }

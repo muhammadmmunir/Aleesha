@@ -10,12 +10,14 @@ import UIKit
 
 class FloatingButton: UIButton {
 
+    // MARK: - Instance variables
+    weak var delegate: TodoViewDelegate?
+    
+    // MARK: - View customization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
     }
-    
-    weak var delegate: TodoViewDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

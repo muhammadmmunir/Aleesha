@@ -10,6 +10,7 @@ import UIKit
 
 class TodoListRootContainer: BaseView {
     
+    // MARK: - Instance variables
     var todoCategory: TodoCategory? {
         didSet{
             if let todoCategory = todoCategory {
@@ -21,6 +22,7 @@ class TodoListRootContainer: BaseView {
         }
     }
     
+    // MARK: - ContentView
     private let todoListHeader: TodoListHeader = {
         let header = TodoListHeader()
         header.titleLabel.text = "Other"
@@ -34,28 +36,15 @@ class TodoListRootContainer: BaseView {
         return tableView
     }()
 
+    // MARK: - View customization
     override func setupViews() {
         backgroundColor = .white
-        setupTodoListHeader()
-        setupTodoListTableView()
+        
+        let contentView = [todoListHeader, todoListTableView]
+        contentView.forEach(addSubview)
+        
+        todoListHeader.anchorWithSizeMultiplier(top: margins.topAnchor, left: margins.leftAnchor, bottom: nil, right: margins.rightAnchor, width: nil, height: heightAnchor, multiplier: CGSize(width: 0, height: 0.15))
+        todoListTableView.anchor(top: todoListHeader.bottomAnchor, left: margins.leftAnchor, bottom: margins.bottomAnchor, right: margins.rightAnchor)
     }
     
-    private func setupTodoListHeader() {
-        addSubview(todoListHeader)
-        todoListHeader.translatesAutoresizingMaskIntoConstraints = false
-        todoListHeader.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
-        todoListHeader.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
-        todoListHeader.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
-        todoListHeader.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
-    }
-    
-    private func setupTodoListTableView() {
-        addSubview(todoListTableView)
-        todoListTableView.translatesAutoresizingMaskIntoConstraints = false
-        todoListTableView.topAnchor.constraint(equalTo: todoListHeader.bottomAnchor).isActive = true
-        todoListTableView.leftAnchor.constraint(equalTo: margins.leftAnchor).isActive = true
-        todoListTableView.rightAnchor.constraint(equalTo: margins.rightAnchor).isActive = true
-        todoListTableView.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
-    }
-
 }

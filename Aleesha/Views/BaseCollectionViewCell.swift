@@ -10,6 +10,7 @@ import UIKit
 
 class BaseCollectionViewCell: UICollectionViewCell, BaseViewInterface {
     
+    // MARK: - View customization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()

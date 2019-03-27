@@ -10,14 +10,11 @@ import UIKit
 
 class TodoCategoryCollectionView: BaseView {
     
+    // MARK: - Instance variables
     var todoCategories = [TodoCategory]()
-    
     weak var delegate: TodoViewDelegate?
     
-    private var sreenHeight: CGFloat {
-        return UIScreen.main.bounds.size.height
-    }
-    
+    // MARK: - ContentView
     private lazy var categoryCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -27,10 +24,15 @@ class TodoCategoryCollectionView: BaseView {
         return cv
     }()
 
+    // MARK: - View customization
     override func setupViews() {
         populateCategory()
         registerCustomViews()
-        setupCategoryCollectionView()
+        
+        let contentView = [categoryCollectionView]
+        contentView.forEach(addSubview)
+        
+        categoryCollectionView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
     }
     
     private func populateCategory() {
@@ -52,18 +54,10 @@ class TodoCategoryCollectionView: BaseView {
     private func registerCustomViews() {
         categoryCollectionView.register(TodoCategoryCell.self, forCellWithReuseIdentifier: TodoCategoryCell.reuseIdentifier)
     }
-    
-    private func setupCategoryCollectionView() {
-        addSubview(categoryCollectionView)
-        categoryCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        categoryCollectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        categoryCollectionView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        categoryCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        categoryCollectionView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-    }
 
 }
 
+// MARK: - CollectionView data source and delegate
 extension TodoCategoryCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

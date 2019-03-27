@@ -10,8 +10,8 @@ import UIKit
 
 class TodoCategoryCell: BaseCollectionViewCell {
     
+    // MARK: - Instance variables
     static let reuseIdentifier = "TodoCategoryCell"
-    
     var todoCategory: TodoCategory? {
         didSet{
             if let todoCategory = todoCategory {
@@ -22,9 +22,9 @@ class TodoCategoryCell: BaseCollectionViewCell {
             }
         }
     }
-    
     private var progressLineMultiplier = CGFloat.init()
     
+    // MARK: - ContentView
     private let categoryContainer: UIView = {
         let container = UIView()
         container.backgroundColor = UIColor(rgb: 0x36D5FF)
@@ -66,51 +66,22 @@ class TodoCategoryCell: BaseCollectionViewCell {
         return label
     }()
     
+    // MARK: - View customization
     override func setupViews() {
-        setupCategoryContainer()
-        setupIconCategory()
-        setupCategoryLabel()
-        setupNumberOfTaskLabel()
-    }
-    
-    private func setupCategoryContainer() {
         addSubview(categoryContainer)
-        categoryContainer.translatesAutoresizingMaskIntoConstraints = false
-        categoryContainer.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        categoryContainer.leftAnchor.constraint(equalTo: leftAnchor, constant: 5).isActive = true
-        categoryContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
-        categoryContainer.rightAnchor.constraint(equalTo: rightAnchor, constant: -5).isActive = true
+        
+        let contentView = [progressLine, iconCategory, categoryLabel, numberOfTaskLabel]
+        contentView.forEach(categoryContainer.addSubview)
+        
+        categoryContainer.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, padding: UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5))
+        iconCategory.anchorWithSizeMultiplier(top: topAnchor, left: categoryContainer.leftAnchor, bottom: nil, right: nil, padding: UIEdgeInsets(top: 30, left: 20, bottom: 0, right: 0), width: categoryContainer.widthAnchor, height: categoryContainer.heightAnchor, multiplier: CGSize(width: 0.15, height: 0.15))
+        categoryLabel.anchor(top: iconCategory.bottomAnchor, left: categoryContainer.leftAnchor, bottom: nil, right: nil, padding: UIEdgeInsets(top: 25, left: 20, bottom: 0, right: 0))
+        numberOfTaskLabel.anchor(top: categoryLabel.bottomAnchor, left: categoryContainer.leftAnchor, bottom: nil, right: nil, padding: UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 0))
     }
     
     func setupProgressLine() {
+        progressLine.anchorWithSizeMultiplierAndConstant(top: categoryContainer.topAnchor, left: categoryContainer.leftAnchor, bottom: nil, right: nil, width: categoryContainer.widthAnchor, height: nil, multiplier: CGSize(width: progressLineMultiplier, height: 0), size: CGSize(width: 0, height: 5))
         categoryContainer.addSubview(progressLine)
-        progressLine.translatesAutoresizingMaskIntoConstraints = false
-        progressLine.topAnchor.constraint(equalTo: categoryContainer.topAnchor).isActive = true
-        progressLine.leftAnchor.constraint(equalTo: categoryContainer.leftAnchor).isActive = true
-        progressLine.heightAnchor.constraint(equalToConstant: 5).isActive = true
-        progressLine.widthAnchor.constraint(equalTo: categoryContainer.widthAnchor, multiplier: progressLineMultiplier).isActive = true
     }
     
-    private func setupIconCategory() {
-        categoryContainer.addSubview(iconCategory)
-        iconCategory.translatesAutoresizingMaskIntoConstraints = false
-        iconCategory.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
-        iconCategory.leftAnchor.constraint(equalTo: categoryContainer.leftAnchor, constant: 20).isActive = true
-        iconCategory.heightAnchor.constraint(equalTo: categoryContainer.heightAnchor, multiplier: 0.15).isActive = true
-        iconCategory.widthAnchor.constraint(equalTo: categoryContainer.heightAnchor, multiplier: 0.15).isActive = true
-    }
-    
-    private func setupCategoryLabel() {
-        categoryContainer.addSubview(categoryLabel)
-        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
-        categoryLabel.topAnchor.constraint(equalTo: iconCategory.bottomAnchor, constant: 25).isActive = true
-        categoryLabel.leftAnchor.constraint(equalTo: categoryContainer.leftAnchor, constant: 20).isActive = true
-    }
-    
-    private func setupNumberOfTaskLabel() {
-        categoryContainer.addSubview(numberOfTaskLabel)
-        numberOfTaskLabel.translatesAutoresizingMaskIntoConstraints = false
-        numberOfTaskLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 20).isActive = true
-        numberOfTaskLabel.leftAnchor.constraint(equalTo: categoryContainer.leftAnchor, constant: 20).isActive = true
-    }
 }

@@ -8,24 +8,25 @@
 
 import UIKit
 
+// MARK: - Base View Protocol
 protocol BaseViewInterface {
     func setupViews()
 }
 
 class BaseView: UIView, BaseViewInterface {
     
+    // MARK: - Instance variables
     var margins: UILayoutGuide {
         return safeAreaLayoutGuide
     }
-    
     var screenWidth: CGFloat {
         return UIScreen.main.bounds.size.width
     }
-    
     var screenHeight: CGFloat {
         return UIScreen.main.bounds.size.height
     }
 
+    // MARK: - View customization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()

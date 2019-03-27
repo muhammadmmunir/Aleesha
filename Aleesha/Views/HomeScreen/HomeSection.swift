@@ -10,10 +10,11 @@ import UIKit
 
 class HomeSection: BaseView {
     
+    // MARK: - Instance variables
     var sectionItem = [HomeSectionItem]()
-    
     var collectionViewCellColor: UIColor?
     
+    // MARK: - ContentView
     let homeSectionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "AvenirNext-Medium", size: 20)
@@ -34,37 +35,24 @@ class HomeSection: BaseView {
         return cv
     }()
     
-    private func registerCustomViews() {
-        homeCollectionView.register(HomeSectionCell.self, forCellWithReuseIdentifier: HomeSectionCell.reuseIdentifier)
-    }
-    
+    // MARK: - View customization
     override func setupViews() {
         registerCustomViews()
-        setupHomeSectionLabel()
-        setupHomeCollectionView()
+        
+        let contentView = [homeSectionLabel, homeCollectionView]
+        contentView.forEach(addSubview)
+        
+        homeSectionLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, padding: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20))
+        homeCollectionView.anchor(top: homeSectionLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, padding: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20))
     }
     
-    private func setupHomeSectionLabel() {
-        addSubview(homeSectionLabel)
-        homeSectionLabel.translatesAutoresizingMaskIntoConstraints = false
-        homeSectionLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        homeSectionLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        homeSectionLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-    }
-    
-    private func setupHomeCollectionView() {
-        addSubview(homeCollectionView)
-        homeCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        homeCollectionView.topAnchor.constraint(equalTo: homeSectionLabel.bottomAnchor).isActive = true
-        homeCollectionView.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        homeCollectionView.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        homeCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+    private func registerCustomViews() {
+        homeCollectionView.register(HomeSectionCell.self, forCellWithReuseIdentifier: HomeSectionCell.reuseIdentifier)
     }
     
 }
 
 // MARK: - Collection view data source and delegate
-
 extension HomeSection: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

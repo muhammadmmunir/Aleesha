@@ -10,6 +10,7 @@ import UIKit
 
 class InputLabelView: BaseView {
     
+    // MARK: - ContentView
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.init(name: "AvenirNext-Regular", size: 16)
@@ -19,6 +20,7 @@ class InputLabelView: BaseView {
         return label
     }()
 
+    // MARK: - View customization
     override func setupViews() {
         backgroundColor = .white
         
@@ -29,6 +31,7 @@ class InputLabelView: BaseView {
         
     }
     
+    // MARK - Method for view customization
     func setTextLabel(with text: String) {
         titleLabel.text = text
     }

@@ -10,18 +10,16 @@ import UIKit
 
 class HomeTopContainer: BaseView {
     
+    // MARK: - Instance variables
     private var day: String {
         return getTodayDateWithFormat("dd")
     }
-    
     private var month: String {
         return getTodayDateWithFormat("MMM")
     }
-    
     private var year: String {
         return getTodayDateWithFormat("yyyy")
     }
-    
     var quoteText: String? {
         didSet{
             if let quoteText = quoteText {
@@ -30,6 +28,7 @@ class HomeTopContainer: BaseView {
         }
     }
     
+    // MARK: - ContentView
     private let dayLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "AvenirNext-DemiBold", size: 100)
@@ -65,55 +64,28 @@ class HomeTopContainer: BaseView {
         return label
     }()
 
-    private func getTodayDateWithFormat(_ format: String) -> String {
-        
-        let now = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        let dateType = dateFormatter.string(from: now)
-        
-        return dateType
-    }
-    
+    // MARK: - View customization
     override func setupViews() {
         backgroundColor = UIColor(rgb: 0x00D1C4)
         layer.cornerRadius = 30
         layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
-        setupDateLabel()
-//        setupQuoteView()
-        setupQuoteLabel()
-    }
-    
-    private func setupDateLabel() {
-        addSubview(dayLabel)
+        let contentView = [dayLabel, monthYearLabel, quoteLabel]
+        contentView.forEach(addSubview)
+        
         dayLabel.text = self.day
-        dayLabel.translatesAutoresizingMaskIntoConstraints = false
-        dayLabel.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
-        dayLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 50).isActive = true
-        
-        addSubview(monthYearLabel)
         monthYearLabel.text = "\(self.month) \(self.year)"
-        monthYearLabel.translatesAutoresizingMaskIntoConstraints = false
-        monthYearLabel.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
-        monthYearLabel.topAnchor.constraint(equalTo: dayLabel.bottomAnchor, constant: 0).isActive = true
+        dayLabel.anchorWithCenter(top: margins.topAnchor, left: nil, bottom: nil, right: nil, padding: UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0), vertical: nil, horizontal: centerXAnchor)
+        monthYearLabel.anchorWithCenter(top: dayLabel.bottomAnchor, left: nil, bottom: nil, right: nil, vertical: nil, horizontal: margins.centerXAnchor)
+        quoteLabel.anchorWithCenterAndSizeMultiplier(top: nil, left: nil, bottom: margins.bottomAnchor, right: nil, padding: UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0) ,vertical: nil, horizontal: margins.centerXAnchor, width: margins.widthAnchor, height: nil, multiplier: CGSize(width: 0.8, height: 0))
     }
     
-//    private func setupQuoteView() {
-//        addSubview(quoteView)
-//        quoteView.translatesAutoresizingMaskIntoConstraints = false
-//        quoteView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-//        quoteView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-//        quoteView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
-//    }
-    
-    private func setupQuoteLabel() {
-        addSubview(quoteLabel)
-        quoteLabel.translatesAutoresizingMaskIntoConstraints = false
-//        quoteLabel.topAnchor.constraint(equalTo: bottomAnchor, constant: 50).isActive = true
-        quoteLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -10).isActive = true
-        quoteLabel.centerXAnchor.constraint(equalTo: margins.centerXAnchor).isActive = true
-        quoteLabel.widthAnchor.constraint(equalTo: margins.widthAnchor, multiplier: 0.8).isActive = true
-        
+    private func getTodayDateWithFormat(_ format: String) -> String {
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        let dateType = dateFormatter.string(from: now)
+        return dateType
     }
+    
 }

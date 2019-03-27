@@ -10,8 +10,13 @@ import UIKit
 
 class TodoListTableViewHeader: UITableViewHeaderFooterView {
 
+    // MARK: - Instance variables
     static let reuseIdentifier = "TodoListTableViewHeader"
+    private var margins: UILayoutGuide {
+        return safeAreaLayoutGuide
+    }
     
+    // MARK: - ContentView
     let headerLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.init(name: "AvenirNext-Medium", size: 18)
@@ -20,25 +25,20 @@ class TodoListTableViewHeader: UITableViewHeaderFooterView {
         return label
     }()
     
+    // MARK: - View customization
     override public init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
         contentView.backgroundColor = .white
         
-        setupHeaderLabel()
+        let subView = [headerLabel]
+        subView.forEach(addSubview)
+        
+        headerLabel.anchorWithCenter(top: margins.topAnchor, left: margins.leftAnchor, bottom: nil, right: nil, padding: UIEdgeInsets(top: 0, left: 35, bottom: 0, right: 0), vertical: centerYAnchor, horizontal: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupHeaderLabel() {
-        let margins = layoutMarginsGuide
-        addSubview(headerLabel)
-        headerLabel.translatesAutoresizingMaskIntoConstraints = false
-        headerLabel.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
-        headerLabel.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 15).isActive = true
-        headerLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-    }
 }

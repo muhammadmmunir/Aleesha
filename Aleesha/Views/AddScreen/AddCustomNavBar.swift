@@ -10,8 +10,10 @@ import UIKit
 
 class AddCustomNavBar: BaseView {
     
+    // MARK: - Instance variables
     weak var buttonDelegate: AddViewControllerDelegate?
     
+    // MARK: - ContentView
     let closeButton: UIButton = {
         let closeIcon = UIImage(named: ICON.navBarClose)
         let button = UIButton(type: .custom)
@@ -29,6 +31,7 @@ class AddCustomNavBar: BaseView {
         return button
     }()
 
+    // MARK: - View customization
     override func setupViews() {
         backgroundColor = .white
         
@@ -40,6 +43,7 @@ class AddCustomNavBar: BaseView {
         
     }
     
+    // MARK: - Handle action for closeButton
     @objc private func closeAddView() {
         buttonDelegate?.didCloseButtonTapped()
     }

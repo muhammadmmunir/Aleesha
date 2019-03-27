@@ -10,8 +10,10 @@ import UIKit
 
 class InputTitleView: BaseView {
     
+    // MARK: - Instance variables
     weak var alertDelegate: AddViewControllerDelegate?
 
+    // MARK: - ContentView
     lazy var inputTitle: UITextField = {
         let input = UITextField()
         input.placeholder = "Enter a new task"
@@ -37,36 +39,20 @@ class InputTitleView: BaseView {
         return accessory
     }()
     
+    // MARK: - View customization
     override func setupViews() {
         backgroundColor = .white
-        setupInputTitle()
-        setupBottomBorder()
-        setupInputAccessoryView()
-    }
-    
-    private func setupInputTitle() {
-        addSubview(inputTitle)
-        inputTitle.translatesAutoresizingMaskIntoConstraints = false
-        inputTitle.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        inputTitle.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
-        inputTitle.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        inputTitle.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8).isActive = true
-    }
-    
-    private func setupBottomBorder() {
-        addSubview(bottomBorder)
-        bottomBorder.translatesAutoresizingMaskIntoConstraints = false
-        bottomBorder.topAnchor.constraint(equalTo: inputTitle.bottomAnchor).isActive = true
-        bottomBorder.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
-        bottomBorder.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        bottomBorder.heightAnchor.constraint(equalToConstant: 2).isActive = true
-    }
-    
-    private func setupInputAccessoryView() {
+        
+        let contentView = [inputTitle, bottomBorder]
+        contentView.forEach(addSubview)
+        
+        inputTitle.anchorWithSizeMultiplier(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, padding: UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 20), width: nil, height: heightAnchor, multiplier: CGSize(width: 0, height: 0.8))
+        bottomBorder.anchor(top: inputTitle.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, padding: UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 20), size: CGSize(width: 0, height: 2))
+        
+        // setup accessoryView for inputTitle
         titleAccessoryView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 50)
         inputTitle.inputAccessoryView = titleAccessoryView
     }
-
 }
 
 // MARK: - UITextField delegate
@@ -93,7 +79,6 @@ extension InputTitleView: CustomAccessoryViewDelegate {
         } else {
             inputTitle.resignFirstResponder()
         }
-        
     }
     
 }

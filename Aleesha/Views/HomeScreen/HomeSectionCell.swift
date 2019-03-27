@@ -10,8 +10,8 @@ import UIKit
 
 class HomeSectionCell: BaseCollectionViewCell {
     
+    // MARK: - Instance variables
     static let reuseIdentifier = "HomeSectionCell"
-    
     var item: HomeSectionItem? {
         didSet{
             if let item = item {
@@ -21,6 +21,7 @@ class HomeSectionCell: BaseCollectionViewCell {
         }
     }
     
+    // MARK: - ContentView
     let container: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(rgb: 0x00E4B8)
@@ -47,35 +48,14 @@ class HomeSectionCell: BaseCollectionViewCell {
         return label
     }()
     
+    // MARK: - View customization
     override func setupViews() {
-        setupContainer()
-        setupCategoryLabel()
-        setupNameLabel()
-    }
-    
-    private func setupContainer() {
-        addSubview(container)
-        container.translatesAutoresizingMaskIntoConstraints = false
-        container.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        container.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
-        container.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
-        container.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
-    }
-    
-    private func setupCategoryLabel() {
-        addSubview(categoryLabel)
-        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
-        categoryLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: 10).isActive = true
-        categoryLabel.leftAnchor.constraint(equalTo: container.leftAnchor, constant: 10).isActive = true
-        categoryLabel.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -10).isActive = true
-    }
-    
-    private func setupNameLabel() {
-        addSubview(nameLabel)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 10).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: container.leftAnchor, constant: 10).isActive = true
-        nameLabel.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -10).isActive = true
+        let contentView = [container, categoryLabel, nameLabel]
+        contentView.forEach(addSubview)
+        
+        container.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, padding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+        categoryLabel.anchor(top: container.topAnchor, left: container.leftAnchor, bottom: nil, right: container.rightAnchor, padding: UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10))
+        nameLabel.anchor(top: categoryLabel.bottomAnchor, left: container.leftAnchor, bottom: nil, right: container.rightAnchor, padding: UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10))
     }
     
 }
