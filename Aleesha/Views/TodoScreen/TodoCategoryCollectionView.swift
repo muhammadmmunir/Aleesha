@@ -26,6 +26,9 @@ class TodoCategoryCollectionView: BaseView {
 
     // MARK: - View customization
     override func setupViews() {
+        // create array allocation memory
+        todoCategories.reserveCapacity(6)
+        
         populateCategory()
         registerCustomViews()
         

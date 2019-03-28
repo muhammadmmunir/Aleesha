@@ -40,6 +40,7 @@ class AddViewController: UIViewController {
     }
     
     private func populateCategory() {
+        todoCategories.reserveCapacity(6)
         todoCategories.append(TodoCategory(name: "School", icon: ICON.categorySchool, totalTask: 7, finishTask: 4, items: [
             TodoItem(title: "Finish Paper Template", status: true, date: Date.yesterday),
             TodoItem(title: "Study Literature", date: Date.today),
