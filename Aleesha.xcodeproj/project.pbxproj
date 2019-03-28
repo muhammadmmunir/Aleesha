@@ -116,14 +116,14 @@
 		E62F3F012246171B00695083 /* AddScreen */ = {
 			isa = PBXGroup;
 			children = (
-				E62F3F022246174400695083 /* AddRootContainer.swift */,
+				E6877306224910AD00B8BEFE /* AddCustomNavBar.swift */,
 				E62F3F042246175400695083 /* AddHeader.swift */,
-				E62F3F0622461F0500695083 /* InputTitleView.swift */,
-				E62F3F082247C67A00695083 /* InputCategoryView.swift */,
+				E62F3F022246174400695083 /* AddRootContainer.swift */,
 				E62F3F0A2247C9CE00695083 /* CustomAccessoryView.swift */,
+				E62F3F082247C67A00695083 /* InputCategoryView.swift */,
 				E62F3F0C2247D54300695083 /* InputDateView.swift */,
 				E62F3F0E2247DEC700695083 /* InputLabelView.swift */,
-				E6877306224910AD00B8BEFE /* AddCustomNavBar.swift */,
+				E62F3F0622461F0500695083 /* InputTitleView.swift */,
 			);
 			path = AddScreen;
 			sourceTree = "<group>";
