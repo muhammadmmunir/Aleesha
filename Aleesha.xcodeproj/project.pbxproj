@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E628C06A225BDB1400E01E17 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E628C069225BDB1400E01E17 /* CoreDataManager.swift */; };
 		E62F3F00224616BF00695083 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62F3EFF224616BF00695083 /* AddViewController.swift */; };
 		E62F3F032246174400695083 /* AddRootContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62F3F022246174400695083 /* AddRootContainer.swift */; };
 		E62F3F052246175400695083 /* AddHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62F3F042246175400695083 /* AddHeader.swift */; };
@@ -21,6 +22,7 @@
 		E631C8202234038C003959C2 /* FinanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E631C81F2234038C003959C2 /* FinanceViewController.swift */; };
 		E631C822223403C8003959C2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E631C821223403C8003959C2 /* ProfileViewController.swift */; };
 		E631C82522340884003959C2 /* ICON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E631C82422340884003959C2 /* ICON.swift */; };
+		E63ABEB5224D544E0092682D /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E63ABEB3224D544E0092682D /* DataModel.xcdatamodeld */; };
 		E64CD4312239A26F00018D8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E64CD4302239A26F00018D8D /* Assets.xcassets */; };
 		E64CD4332239A8B900018D8D /* HeaderBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64CD4322239A8B900018D8D /* HeaderBar.swift */; };
 		E64CD4382239A9F800018D8D /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64CD4372239A9F800018D8D /* BaseView.swift */; };
@@ -40,8 +42,6 @@
 		E6B3F89C22384BD20053AA3E /* HomeSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B3F89B22384BD20053AA3E /* HomeSectionCell.swift */; };
 		E6B3F89E22384C8B0053AA3E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B3F89D22384C8B0053AA3E /* MainTabBarController.swift */; };
 		E6DEE57722355C1A00C003FF /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DEE57622355C1A00C003FF /* HomeSection.swift */; };
-		E6DEE57922355C8600C003FF /* TodoItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DEE57822355C8600C003FF /* TodoItemModel.swift */; };
-		E6DEE57B22355D6300C003FF /* TodoCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DEE57A22355D6300C003FF /* TodoCategoryModel.swift */; };
 		E6DEE57D2235603200C003FF /* TodoSectionItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DEE57C2235603200C003FF /* TodoSectionItemModel.swift */; };
 		E6EA6C412236F83500CED214 /* FinanceSectionHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EA6C402236F83500CED214 /* FinanceSectionHistoryModel.swift */; };
 		E6EA6C432236FA2600CED214 /* HomeSectionItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EA6C422236FA2600CED214 /* HomeSectionItemModel.swift */; };
@@ -54,6 +54,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E628C069225BDB1400E01E17 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E62F3EFF224616BF00695083 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		E62F3F022246174400695083 /* AddRootContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRootContainer.swift; sourceTree = "<group>"; };
 		E62F3F042246175400695083 /* AddHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHeader.swift; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 		E631C81F2234038C003959C2 /* FinanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceViewController.swift; sourceTree = "<group>"; };
 		E631C821223403C8003959C2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E631C82422340884003959C2 /* ICON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICON.swift; sourceTree = "<group>"; };
+		E63ABEB4224D544E0092682D /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		E64CD4302239A26F00018D8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E64CD4322239A8B900018D8D /* HeaderBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBar.swift; sourceTree = "<group>"; };
 		E64CD4372239A9F800018D8D /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -89,8 +91,6 @@
 		E6B3F89B22384BD20053AA3E /* HomeSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionCell.swift; sourceTree = "<group>"; };
 		E6B3F89D22384C8B0053AA3E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E6DEE57622355C1A00C003FF /* HomeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSection.swift; sourceTree = "<group>"; };
-		E6DEE57822355C8600C003FF /* TodoItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemModel.swift; sourceTree = "<group>"; };
-		E6DEE57A22355D6300C003FF /* TodoCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCategoryModel.swift; sourceTree = "<group>"; };
 		E6DEE57C2235603200C003FF /* TodoSectionItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSectionItemModel.swift; sourceTree = "<group>"; };
 		E6EA6C402236F83500CED214 /* FinanceSectionHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceSectionHistoryModel.swift; sourceTree = "<group>"; };
 		E6EA6C422236FA2600CED214 /* HomeSectionItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionItemModel.swift; sourceTree = "<group>"; };
@@ -199,6 +199,7 @@
 				E6BAA9E6221C944000A40216 /* Views */,
 				E6BAA9E8221C946200A40216 /* Supporting Files */,
 				E6B0B37B221495F8005CA6EC /* Info.plist */,
+				E628C069225BDB1400E01E17 /* CoreDataManager.swift */,
 			);
 			path = Aleesha;
 			sourceTree = "<group>";
@@ -235,11 +236,10 @@
 		E6BAA9E7221C944700A40216 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E6DEE57822355C8600C003FF /* TodoItemModel.swift */,
-				E6DEE57A22355D6300C003FF /* TodoCategoryModel.swift */,
 				E6DEE57C2235603200C003FF /* TodoSectionItemModel.swift */,
 				E6EA6C402236F83500CED214 /* FinanceSectionHistoryModel.swift */,
 				E6EA6C422236FA2600CED214 /* HomeSectionItemModel.swift */,
+				E63ABEB3224D544E0092682D /* DataModel.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -399,6 +399,7 @@
 				E62F3F0722461F0500695083 /* InputTitleView.swift in Sources */,
 				E6AC6F20224AC31800D46271 /* UIView.swift in Sources */,
 				E631C8202234038C003959C2 /* FinanceViewController.swift in Sources */,
+				E628C06A225BDB1400E01E17 /* CoreDataManager.swift in Sources */,
 				E64CD43E2239B8C000018D8D /* FinanceRootContainer.swift in Sources */,
 				E62F3F0B2247C9CE00695083 /* CustomAccessoryView.swift in Sources */,
 				E631C81C223400AD003959C2 /* UIColor.swift in Sources */,
@@ -408,8 +409,8 @@
 				E62F3F0D2247D54300695083 /* InputDateView.swift in Sources */,
 				E6EA6C432236FA2600CED214 /* HomeSectionItemModel.swift in Sources */,
 				E69AA53A22452D510098F45F /* TodoListTableViewHeader.swift in Sources */,
+				E63ABEB5224D544E0092682D /* DataModel.xcdatamodeld in Sources */,
 				E64CD4382239A9F800018D8D /* BaseView.swift in Sources */,
-				E6DEE57B22355D6300C003FF /* TodoCategoryModel.swift in Sources */,
 				E69AA53C22452EAC0098F45F /* TodoListTableViewCell.swift in Sources */,
 				E631C81E223402AE003959C2 /* TodoViewController.swift in Sources */,
 				E6EA6C472237099D00CED214 /* HomeRootContainer.swift in Sources */,
@@ -426,7 +427,6 @@
 				E62F3F0F2247DEC700695083 /* InputLabelView.swift in Sources */,
 				E6EA6C412236F83500CED214 /* FinanceSectionHistoryModel.swift in Sources */,
 				E631C822223403C8003959C2 /* ProfileViewController.swift in Sources */,
-				E6DEE57922355C8600C003FF /* TodoItemModel.swift in Sources */,
 				E6B0B370221495F7005CA6EC /* AppDelegate.swift in Sources */,
 				E64CD43A2239AC9700018D8D /* TodoRootContainer.swift in Sources */,
 			);
@@ -620,6 +620,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E63ABEB3224D544E0092682D /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E63ABEB4224D544E0092682D /* DataModel.xcdatamodel */,
+			);
+			currentVersion = E63ABEB4224D544E0092682D /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E6B0B364221495F7005CA6EC /* Project object */;
 }

@@ -40,6 +40,13 @@ class MainTabBarController: UITabBarController {
         let financeNavigationController = setupNavigationController(with: FinanceViewController(), with: "", and: ICON.tabFinance)
         let profileNavigationController = setupNavigationController(with: ProfileViewController(), with: "", and: ICON.tabProfile)
         
+        // Setting instance variable
+        let todoViewController = todoNavigationController.topViewController as? TodoViewController
+        
+        if let todoViewController = todoViewController {
+            todoViewController.manegedObjectContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+        }
+        
         viewControllers = [
             homeNavigationController,
             todoNavigationController,
