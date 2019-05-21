@@ -20,21 +20,21 @@ Aleesha is a personal manager for your daily busyness.
 
 ##### Home Screen
 
-![Homescreen](https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/homescreen.png?raw=true "Home Screen")
+<img alt="Home Screen" src="https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/homescreen.png" width="240" />
 
 ##### Todo Screen
 
-![Todoscreen](https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/todoscreen.png?raw=true "Todo Screen")
+<img alt="Todo Screen" src="https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/todoscreen.png" width="240" />
 
 ##### Todo List Screen
 
-![Todosistscreen](https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/todolistscreen.png?raw=true "Todo List Screen")
+<img alt="Todos List Screen" src="https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/todolistscreen.png" width="240" />
 
 ##### Add Screen
 
-![Addscreen](https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/addscreen.png?raw=true "Add Screen")
+<img alt="Add Screen" src="https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/addscreen.png" width="240" />
 
-<img src="https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/homescreen.png" width="120" />
+
 
 ### Maintainer
 
