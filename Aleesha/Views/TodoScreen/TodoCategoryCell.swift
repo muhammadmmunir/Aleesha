@@ -15,10 +15,10 @@ class TodoCategoryCell: BaseCollectionViewCell {
     var todoCategory: TodoCategory? {
         didSet{
             if let todoCategory = todoCategory {
-                iconCategory.image = UIImage(named: todoCategory.icon)
-                categoryLabel.text = todoCategory.name
-                numberOfTaskLabel.text = "\(String(todoCategory.totalTask)) tasks"
-                progressLineMultiplier = todoCategory.totalTask != 0 ? CGFloat(todoCategory.finishTask) / CGFloat(todoCategory.totalTask) : CGFloat(0)
+                iconCategory.image = UIImage(named: todoCategory.value(forKey: "icon") as! String)
+                categoryLabel.text = todoCategory.value(forKey: "name") as? String
+                numberOfTaskLabel.text = "\(String(todoCategory.value(forKey: "totalTask") as! Int16)) tasks"
+                progressLineMultiplier = todoCategory.value(forKey: "totalTask") as! Int16 != 0 ? CGFloat(todoCategory.value(forKey: "finishTask") as! Int16) / CGFloat(todoCategory.value(forKey: "totalTask") as! Int16) : CGFloat(0)
             }
         }
     }

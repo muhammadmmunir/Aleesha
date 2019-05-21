@@ -6,11 +6,32 @@
 //  Copyright © 2019 Muhammad M. Munir. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class TodoListViewController: UIViewController {
     
     var todoCategory: TodoCategory?
+    var managedObjectContext: NSManagedObjectContext!
+    
+    lazy var todoListFetchResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
+        // Initialize fetch request
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TodoItem")
+        
+        // Add predicate
+        guard let name = self.todoCategory?.name else {
+            return NSFetchedResultsController()
+        }
+
+        let sortName = NSSortDescriptor(key: "title", ascending: true)
+        let itemName = NSPredicate(format: "%K == %@", "category.name", name)
+        fetchRequest.sortDescriptors = [sortName]
+        fetchRequest.predicate = itemName
+        
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        return fetchResultsController
+    }()
     
     private lazy var todoListRootContainer: TodoListRootContainer = {
         let root = TodoListRootContainer()
@@ -20,7 +41,20 @@ class TodoListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        performFetchTodoList()
         setupViews()
+    }
+    
+    private func performFetchTodoList() {
+        do {
+            try self.todoListFetchResultsController.performFetch()
+            let record = todoListFetchResultsController.fetchedObjects as! [TodoItem]
+            todoListRootContainer.todoItems = record
+            
+        } catch {
+            let fetchError = error as NSError
+            print("\(fetchError), \(fetchError.userInfo)")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,5 +124,4 @@ class TodoListViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-
 }

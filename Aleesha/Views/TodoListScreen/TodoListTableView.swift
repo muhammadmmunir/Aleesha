@@ -6,11 +6,14 @@
 //  Copyright © 2019 Muhammad M. Munir. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class TodoListTableView: BaseView {
     
     // MARK: - Instance variables
+    weak var todoListFetchResultsController: NSFetchedResultsController<NSFetchRequestResult>?
+    
     private var sections = [TodoSectionItem]()
     var todoItems: [TodoItem]? {
         didSet{
@@ -20,7 +23,7 @@ class TodoListTableView: BaseView {
                 var todoItemsTommorow = [TodoItem]()
                 
                 todoItems.forEach { (item) in
-                    let order = Calendar.current.compare(item.date, to: Date.today, toGranularity: .day)
+                    let order = Calendar.current.compare(item.value(forKey: "date") as! Date, to: Date.today, toGranularity: .day)
                     if order == .orderedSame {
                         todoItemsToday.append(item)
                     }
@@ -104,8 +107,8 @@ extension TodoListTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TodoListTableViewCell.reuseIdentifier, for:
             indexPath) as! TodoListTableViewCell
-        let title = sections[indexPath.section].items[indexPath.row].title
-        let status = sections[indexPath.section].items[indexPath.row].status
+        let title = sections[indexPath.section].items[indexPath.row].value(forKey: "title") as! String
+        let status = sections[indexPath.section].items[indexPath.row].value(forKey: "status") as! Bool
         cell.changeTodoItem(from: status, and: title)
         cell.isUserInteractionEnabled = true
         return cell

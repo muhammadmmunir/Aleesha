@@ -6,6 +6,7 @@
 //  Copyright © 2019 Muhammad M. Munir. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class TodoCategoryCollectionView: BaseView {
@@ -13,6 +14,7 @@ class TodoCategoryCollectionView: BaseView {
     // MARK: - Instance variables
     var todoCategories = [TodoCategory]()
     weak var delegate: TodoViewDelegate?
+    weak var categoryFetchResultsController: NSFetchedResultsController<NSFetchRequestResult>?
     
     // MARK: - ContentView
     private lazy var categoryCollectionView: UICollectionView = {
@@ -26,32 +28,12 @@ class TodoCategoryCollectionView: BaseView {
 
     // MARK: - View customization
     override func setupViews() {
-        // create array allocation memory
-        todoCategories.reserveCapacity(6)
-        
-        populateCategory()
         registerCustomViews()
         
         let contentView = [categoryCollectionView]
         contentView.forEach(addSubview)
         
         categoryCollectionView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
-    }
-    
-    private func populateCategory() {
-        todoCategories.append(TodoCategory(name: "School", icon: ICON.categorySchool, totalTask: 7, finishTask: 4, items: [
-            TodoItem(title: "Finish Paper Template", status: true, date: Date.yesterday),
-            TodoItem(title: "Study Literature", date: Date.today),
-            TodoItem(title: "Do the exercises of math", date: Date.today),
-            TodoItem(title: "Check the homework", date: Date.tommorow),
-            TodoItem(title: "Study Science", date: Date.tommorow),
-            TodoItem(title: "Do the exercises of math", date: Date.tommorow)
-            ]))
-        todoCategories.append(TodoCategory(name: "Work", icon: ICON.categoryWork, totalTask: 4, finishTask: 3))
-        todoCategories.append(TodoCategory(name: "Sport", icon: ICON.categorySport, totalTask: 2, finishTask: 1))
-        todoCategories.append(TodoCategory(name: "Home", icon: ICON.categoryHome, totalTask: 11, finishTask: 8))
-        todoCategories.append(TodoCategory(name: "Buy", icon: ICON.categoryBuy, totalTask: 4, finishTask: 1))
-        todoCategories.append(TodoCategory(name: "Other", icon: ICON.categoryOther, totalTask: 0, finishTask: 0))
     }
     
     private func registerCustomViews() {
@@ -63,15 +45,46 @@ class TodoCategoryCollectionView: BaseView {
 // MARK: - CollectionView data source and delegate
 extension TodoCategoryCollectionView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
+        if let sections = categoryFetchResultsController?.sections {
+            return sections.count
+        }
+        
+        return 0
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return todoCategories.count
+//        return todoCategories.count
+        if let sections = categoryFetchResultsController?.sections {
+            let sectionInfo = sections[section]
+            return sectionInfo.numberOfObjects
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TodoCategoryCell.reuseIdentifier, for: indexPath) as! TodoCategoryCell
-        cell.todoCategory = todoCategories[indexPath.row]
-        cell.setupProgressLine()
+        
+        configureCell(cell, atIndexPath: indexPath)
+//        cell.todoCategory = todoCategories[indexPath.row]
+//        cell.setupProgressLine()
         return cell
+    }
+    
+    // Helper method for cellForItemAt
+    private func configureCell(_ cell: TodoCategoryCell, atIndexPath indexPath: IndexPath) {
+        
+        guard let categoryFetchResultsController = categoryFetchResultsController else {
+            return
+        }
+        
+        // Fetch record
+        let category = categoryFetchResultsController.object(at: indexPath) as! TodoCategory
+        cell.todoCategory = category
+        cell.setupProgressLine()
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -86,7 +99,23 @@ extension TodoCategoryCollectionView: UICollectionViewDataSource, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didCategoryTapped(with: todoCategories[indexPath.row])
+        
+        guard let categoryFetchResultsController = categoryFetchResultsController else {
+            return
+        }
+        
+        // Fetch record
+        let category = categoryFetchResultsController.object(at: indexPath) as! TodoCategory
+        
+        delegate?.didCategoryTapped(with: category)
     }
+    
+}
+
+extension TodoCategoryCollectionView: NSFetchedResultsControllerDelegate {
+    
+//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        self.categoryCollectionView.beginUpdate
+//    }
     
 }

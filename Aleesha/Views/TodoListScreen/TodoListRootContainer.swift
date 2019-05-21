@@ -11,13 +11,18 @@ import UIKit
 class TodoListRootContainer: BaseView {
     
     // MARK: - Instance variables
+    var todoItems: [TodoItem]?
     var todoCategory: TodoCategory? {
         didSet{
             if let todoCategory = todoCategory {
                 todoListHeader.titleLabel.text = todoCategory.name
-                todoListHeader.titleIcon.image = UIImage(named: todoCategory.icon)
+                todoListHeader.titleIcon.image = UIImage(named: todoCategory.value(forKey: "icon") as! String)
                 todoListHeader.taskNumberLabel.text = "\(todoCategory.totalTask) tasks"
-                todoListTableView.todoItems = todoCategory.items
+//                todoListTableView.todoItems = todoCategory.value(forKey: "items") as? [TodoItem]
+                todoListTableView.todoItems = todoCategory.items?.allObjects as? [TodoItem]
+            }
+            if let todoItems = todoItems {
+                todoListTableView.todoItems = todoItems
             }
         }
     }
