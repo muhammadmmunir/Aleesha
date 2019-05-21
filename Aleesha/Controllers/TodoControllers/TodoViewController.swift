@@ -16,6 +16,7 @@ protocol TodoViewDelegate: class {
 
 class TodoViewController: UIViewController {
     
+    // MARK: - Initialize core data manager
     var manegedObjectContext: NSManagedObjectContext!
     
     lazy var catageoryFetchResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
@@ -98,6 +99,7 @@ extension TodoViewController: TodoViewDelegate {
             fatalError("Error, there is no navigation controller.")
         }
         let todoListController = TodoListViewController()
+        todoListController.managedObjectContext = self.manegedObjectContext
         todoListController.todoCategory = data
         navigationController.pushViewController(todoListController, animated: true)
     }

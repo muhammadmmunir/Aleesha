@@ -6,11 +6,14 @@
 //  Copyright © 2019 Muhammad M. Munir. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 class TodoListTableView: BaseView {
     
     // MARK: - Instance variables
+    weak var todoListFetchResultsController: NSFetchedResultsController<NSFetchRequestResult>?
+    
     private var sections = [TodoSectionItem]()
     var todoItems: [TodoItem]? {
         didSet{

@@ -11,6 +11,7 @@ import UIKit
 class TodoListRootContainer: BaseView {
     
     // MARK: - Instance variables
+    var todoItems: [TodoItem]?
     var todoCategory: TodoCategory? {
         didSet{
             if let todoCategory = todoCategory {
@@ -19,6 +20,9 @@ class TodoListRootContainer: BaseView {
                 todoListHeader.taskNumberLabel.text = "\(todoCategory.totalTask) tasks"
 //                todoListTableView.todoItems = todoCategory.value(forKey: "items") as? [TodoItem]
                 todoListTableView.todoItems = todoCategory.items?.allObjects as? [TodoItem]
+            }
+            if let todoItems = todoItems {
+                todoListTableView.todoItems = todoItems
             }
         }
     }
