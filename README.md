@@ -18,23 +18,13 @@ Aleesha is a personal manager for your daily busyness.
 
 ### Screenshots from Latest Version of this App.
 
-##### Home Screen
-
 <img alt="Home Screen" src="https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/homescreen.png" width="240" />
-
-##### Todo Screen
 
 <img alt="Todo Screen" src="https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/todoscreen.png" width="240" />
 
-##### Todo List Screen
-
 <img alt="Todos List Screen" src="https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/todolistscreen.png" width="240" />
 
-##### Add Screen
-
 <img alt="Add Screen" src="https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/addscreen.png" width="240" />
-
-
 
 ### Maintainer
 
