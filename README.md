@@ -34,6 +34,8 @@ Aleesha is a personal manager for your daily busyness.
 
 ![Addscreen](https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/addscreen.png?raw=true "Add Screen")
 
+<img src="https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/homescreen.png" width="120" />
+
 ### Maintainer
 
 Muhammad M. Munir: [`muhammadmmunir24@gmail.com`](muhammadmmunir24@gmail.com)
