@@ -16,9 +16,23 @@ Aleesha is a personal manager for your daily busyness.
 5. NSFetchResultController implementation behind the Core Data.
 6. and many more implementation of swift tech stack.
 
-### Latest Version of this App.
+### Screenshots from Latest Version of this App.
 
+##### Home Screen
 
+![Homescreen](https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/homescreen.png?raw=true "Home Screen")
+
+##### Todo Screen
+
+![Todoscreen](https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/todoscreen.png?raw=true "Todo Screen")
+
+##### Todo List Screen
+
+![Todosistscreen](https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/todolistscreen.png?raw=true "Todo List Screen")
+
+##### Add Screen
+
+![Addscreen](https://github.com/muhammadmmunir/Aleesha/blob/dev/griffin/screenshots/addscreen.png?raw=true "Add Screen")
 
 ### Maintainer
 
